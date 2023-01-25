@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!-- <img src="{% static 'img/collegeBanner.png' %}"> -->
+{% if books %}
+<div>
+   
+    <div class="row my_home_row">
+        {% for book in books %}
+        <!-- <div class="my_book_card"> -->
+        <div class="card col-3 text-center border-dark">
+            
+            <div class="card-header">
+                
+                <img class="book_image" src="{{book.image.url}}" >
+                <!-- width="200px" height="275px" -->
+                <h3>{{book.name}}</h3>
+            </div>
+            <div class="card-body">
+                <p>Genre: {{book.genre}}</p>
+                <p>Author: {{book.author}}</p>
+                <!-- <p><strong>{{book.status}}</strong></p> -->
+                {% if book.status == 'Available' %}
+                <a href="#" class="btn btn-success">{{book.status}}</a>
+                {% elif book.status == 'Not Available' %}
+                <a href="#" class="btn btn-danger">{{book.status}}</a>
+                {% else %}
+                <a href="#" class="btn btn-warning">{{book.status}}</a>
+                {% endif %}
+            </div>
+            <div class="card-footer">
+                <!-- <p>{{book.description}}</p> -->
+                <p>Rating: {{book.rating}}/5</p>
+            </div>
+            <!-- </div> -->
+        </div>
+        {% endfor %}
+    <!-- {% elif book  %}
+    <p>No results found.</p> -->
+ {% else %}   
+</div>
+<h3 class="my_home_headings  text-center ">High Rated Books</h3>
+<div class="row">
+    
+    {% for book in high_rated %}
+    <div class="my_home_book card col-4 text-center border-dark"> 
+        <div class="card-header">   
+            <img class="home_book_image" src="{{book.image.url}}" width="175px" height="225px">
+            <h3>{{book.name}}</h3>
+        </div>
+        <div class="card-body">
+            {% if book.status == 'Available' %}
+            <a href="{% url 'book_store:book_detail' book.id %}" class="btn btn-success">{{book.status}}</a>
+            {% elif book.status == 'Not Available' %}
+            <a href="{% url 'book_store:book_detail' book.id %}" class="btn btn-danger">{{book.status}}</a>
+            {% else %}
+            <a href="{% url 'book_store:book_detail' book.id %}" class="btn btn-warning">{{book.status}}</a>
+            {% endif %}   
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div>
+    <h3 class="my_home_headings  text-center ">Fiction Books</h3>
+    <div class="row my_home_row">
+        {% for book in fiction %}
+        <div class="my_home_book card col-4 text-center border-dark"> 
+            <div class="card-header">   
+                <img class="home_book_image" src="{{book.image.url}}" width="175px" height="225px">
+                <h3>{{book.name}}</h3>
+            </div>
+            <div class="card-body">
+                {% if book.status == 'Available' %}
+                <a href="{% url 'book_store:book_detail' book.id %}" class="btn btn-success">{{book.status}}</a>
+                {% elif book.status == 'Not Available' %}
+                <a href="{% url 'book_store:book_detail' book.id %}" class="btn btn-danger">{{book.status}}</a>
+                {% else %}
+                <a href="{% url 'book_store:book_detail' book.id %}" class="btn btn-warning">{{book.status}}</a>
+                {% endif %}   
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div>
+    <h3 class="my_home_headings  text-center ">Self-help Books</h3>
+    <div class="row my_home_row">
+        {% for book in self_help %}
+        <div class="my_home_book card col-4 text-center border-dark"> 
+            <div class="card-header">   
+                <img class="home_book_image" src="{{book.image.url}}" width="175px" height="225px">
+                <h3>{{book.name}}</h3>
+            </div>
+            <div class="card-body">
+                {% if book.status == 'Available' %}
+                <a href="{% url 'book_store:book_detail' book.id %}" class="btn btn-success">{{book.status}}</a>
+                {% elif book.status == 'Not Available' %}
+                <a href="{% url 'book_store:book_detail' book.id %}" class="btn btn-danger">{{book.status}}</a>
+                {% else %}
+                <a href="{% url 'book_store:book_detail' book.id %}" class="btn btn-warning">{{book.status}}</a>
+                {% endif %}   
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div>
+    <h3 class="my_home_headings  text-center ">Fantasy Books</h3>
+    <div class="row my_home_row">
+        {% for book in fantasy %}
+        <div class="my_home_book card col-4 text-center border-dark"> 
+            <div class="card-header">   
+                <img class="home_book_image" src="{{book.image.url}}" width="175px" height="225px">
+                <h3>{{book.name}}</h3>
+            </div>
+            <div class="card-body">
+                {% if book.status == 'Available' %}
+                <a href="{% url 'book_store:book_detail' book.id %}" class="btn btn-success">{{book.status}}</a>
+                {% elif book.status == 'Not Available' %}
+                <a href="{% url 'book_store:book_detail' book.id %}" class="btn btn-danger">{{book.status}}</a>
+                {% else %}
+                <a href="{% url 'book_store:book_detail' book.id %}" class="btn btn-warning">{{book.status}}</a>
+                {% endif %}   
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

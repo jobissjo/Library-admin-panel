@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="shadow card">
+    <div class="text-center card-body">
+        <h5 class="card-title">{{profile.name}}</h5>
+        <h4>{{profile.book_name}}</h4>
+        <h4>{{profile.taken_date}}</h4>
+        <h4>{{profile.return_date}}</h4>
+        <h4>{{profile.book_status}}</h4>
+        <a class="btn btn-success" href="{% url 'book_store:home' %}">Okay</a>
+    </div>
+</div>
+{% endblock %}

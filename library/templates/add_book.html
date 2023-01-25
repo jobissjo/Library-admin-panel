@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div>
+    {% for message in messages %}
+    {% if message.tags == 'success' %}
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            {{message}}
+            <a href="{% url 'members:book_form' %}" type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
+<div class="form_container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+           <div class="col-6">{{form.name | as_crispy_field}}</div> 
+           <div class="col-6">{{form.genre | as_crispy_field}}</div>
+        </div>
+        <div class="row">
+           
+            <div class="col-6">{{form.author | as_crispy_field}}</div>
+            <div class="col-6">{{form.rating | as_crispy_field}}</div>
+        </div>
+        <div class="row">
+            <div class="col-6">{{form.status | as_crispy_field}}</div>
+            <div class="col-6 ">{{form.image | as_crispy_field}}</div>
+        </div>
+        <div class="row">
+            <div class="">{{form.description | as_crispy_field}}</div>
+        </div>
+        
+        <div class="text-center">
+            <button class="btn btn-outline-success" type="submit">Submit</button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

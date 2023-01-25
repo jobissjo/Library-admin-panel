@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!-- <img src="{% static 'img/collegeBanner.png' %}"> -->
+<div>
+    {% if books %}
+    <div class="row">
+        {% for book in books %}
+        <!-- <div class="my_book_card"> -->
+        <div class="card col-4 text-center border-dark">
+            
+            <div class="card-header">
+                
+                <img class="book_image" src="{{book.image.url}}" >
+                <!-- width="200px" height="275px" -->
+                <h3>{{book.name}}</h3>
+            </div>
+            <div class="card-body">
+                <p>Genre: {{book.genre}}</p>
+                <p>Author: {{book.author}}</p>
+                <!-- <p><strong>{{book.status}}</strong></p> -->
+                {% if book.status == 'Available' %}
+                <a href="#" class="btn btn-success">{{book.status}}</a>
+                {% elif book.status == 'Not Available' %}
+                <a href="#" class="btn btn-danger">{{book.status}}</a>
+                {% else %}
+                <a href="#" class="btn btn-warning">{{book.status}}</a>
+                {% endif %}
+            </div>
+            <div class="card-footer">
+                <!-- <p>{{book.description}}</p> -->
+                <p>Rating: {{book.rating}}/5</p>
+            </div>
+            <!-- </div> -->
+        </div>
+        {% endfor %}
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+</div>
+{% endblock content %}

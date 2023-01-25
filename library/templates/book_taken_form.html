@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="border-dark">
+    <div>
+        {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                {{message}}
+                <a href="{% url 'members:book_form' %}" type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+            </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+    <h3 class="text-center">Book Borrow Form</h3>
+    <form method="POST" >
+        {% csrf_token %}
+        <div class="card border-dark p-3">
+            <div class="row">
+                <div class="col-6">{{form.name | as_crispy_field}}</div>
+                <div class="col-6">{{form.book_name | as_crispy_field}}</div>
+            </div>
+            <div class="row">
+                <div class="col-6">{{form.phone_number | as_crispy_field}}</div>
+                <div class="col-6">{{form.email | as_crispy_field}}</div>
+            </div>
+            <div class="row">
+                <div class="col-6">{{form.member_id | as_crispy_field}}</div>
+                <div class="col-6">{{form.book_status | as_crispy_field}}</div>
+            </div>
+            {{form.address | as_crispy_field}}
+        </div>
+        <div class="text-center mt-2">
+            <button class=" btn btn-outline-primary " type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

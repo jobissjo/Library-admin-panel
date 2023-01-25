@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <h2 class="text-center">Book Borrowers List</h2>
+    <div>
+        {% for book_borrower in book_borrowers %}
+        <!-- <div class="book_take"> -->
+            <div class="book_take_card card text-center  border-dark">
+                <!-- <div class="card col-6 text-center bg-dark border-light text-light"> -->
+                <div class="card-body">
+                    <h3>Name: {{book_borrower.name}}</h3>
+                    <h4>Book: {{book_borrower.book_name}}</h4>
+                    <p>Phone: {{book_borrower.phone_number}}</p>
+                </div>
+                <div class="card-header">
+                    <a class="btn btn-danger mx-1">{{book_borrower.book_status}}</a>
+                    <a href="{% url 'members:edit_profile' book_borrower.id %}" class="btn btn-warning">Edit</a>
+                </div>
+            </div>
+        <!-- </div> -->
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
